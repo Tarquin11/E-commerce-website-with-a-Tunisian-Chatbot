@@ -1,0 +1,9 @@
+Flask
+Flask-Cors
+Flask-SQLAlchemy
+Flask-JWT-Extended
+Flask-Mail
+deep-translator>=1.11.4
+python-dotenv
+Flask-Caching
+Flask-Migrate

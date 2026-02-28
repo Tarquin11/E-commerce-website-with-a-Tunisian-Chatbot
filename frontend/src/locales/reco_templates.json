@@ -1,0 +1,74 @@
+{
+  "en": {
+    "recommended_size": "Your recommended size is {size}.",
+    "no_results": "No matching jerseys found. Suggestions: {suggestions}.",
+    "added_to_cart": "Added {product} to your cart.",
+    "size_question": "Please provide your height (cm), weight (kg), and age to get an exact size recommendation.",
+    "size_guide_title": "Size Guide",
+    "add_to_cart": "Add to cart",
+    "view_product": "View product"
+  },
+  "fr": {
+    "recommended_size": "Votre taille recommandée est {size}.",
+    "no_results": "Aucun maillot correspondant trouvé. Suggestions : {suggestions}.",
+    "added_to_cart": "Ajouté {product} à votre panier.",
+    "size_question": "Veuillez fournir votre taille (cm), poids (kg) et âge pour obtenir une recommandation précise.",
+    "size_guide_title": "Guide des tailles",
+    "add_to_cart": "Ajouter au panier",
+    "view_product": "Voir le produit"
+  },
+  "ar": {
+    "recommended_size": "المقاس الموصى به هو {size}.",
+    "no_results": "لم يتم العثور على قمصان مطابقة. اقتراحات: {suggestions}.",
+    "added_to_cart": "تمت إضافة {product} إلى سلة التسوق.",
+    "size_question": "الرجاء إدخال طولك (سم)، وزنك (كجم)، وعمرك للحصول على توصية دقيقة.",
+    "size_guide_title": "دليل المقاسات",
+    "add_to_cart": "أضف إلى السلة",
+    "view_product": "عرض المنتج"
+  },
+  "de": {
+    "recommended_size": "Ihre empfohlene Größe ist {size}.",
+    "no_results": "Keine passenden Trikots gefunden. Vorschläge: {suggestions}.",
+    "added_to_cart": "{product} wurde in Ihren Warenkorb gelegt.",
+    "size_question": "Bitte geben Sie Ihre Größe (cm), Ihr Gewicht (kg) und Ihr Alter an, um eine genaue Größenempfehlung zu erhalten.",
+    "size_guide_title": "Größenleitfaden",
+    "add_to_cart": "In den Warenkorb",
+    "view_product": "Produkt ansehen"
+  },
+  "it": {
+    "recommended_size": "La tua taglia consigliata è {size}.",
+    "no_results": "Nessuna maglia corrispondente trovata. Suggerimenti: {suggestions}.",
+    "added_to_cart": "{product} aggiunto al carrello.",
+    "size_question": "Per favore fornisci la tua altezza (cm), il tuo peso (kg) e la tua età per ottenere una raccomandazione precisa.",
+    "size_guide_title": "Guida alle taglie",
+    "add_to_cart": "Aggiungi al carrello",
+    "view_product": "Vedi prodotto"
+  },
+  "es": {
+    "recommended_size": "Tu talla recomendada es {size}.",
+    "no_results": "No se encontraron camisetas. Sugerencias: {suggestions}.",
+    "added_to_cart": "{product} añadido a tu carrito.",
+    "size_question": "Por favor proporciona tu altura (cm), peso (kg) y edad para obtener una recomendación precisa.",
+    "size_guide_title": "Guía de tallas",
+    "add_to_cart": "Añadir al carrito",
+    "view_product": "Ver producto"
+  },
+  "sv": {
+    "recommended_size": "Din rekommenderade storlek är {size}.",
+    "no_results": "Inga matchande tröjor hittades. Förslag: {suggestions}.",
+    "added_to_cart": "{product} har lagts till i din varukorg.",
+    "size_question": "Ange din längd (cm), vikt (kg) och ålder för att få en exakt storleksrekommendation.",
+    "size_guide_title": "Storleksguide",
+    "add_to_cart": "Lägg i kundvagn",
+    "view_product": "Visa produkt"
+  },
+  "derja":{
+    "recommended_size": "Taille Recommandée Lik Howa {size}.",
+    "no_results": "Ma3ndnech El Taille Li theb 3lih , Ama haw les Choix Hedhom : {suggestions}.",
+    "added_to_cart": "Zedt {product} lel Panier mte3ek.",
+    "size_question": "a3tini Tolk (cm), wou Waznek (kg) w 3omrek bech na3tik Taille mte3ek.",
+    "size_guide_title": "Guide des Tailles",
+    "add_to_cart": "Zidou lel Panier",
+    "view_product": "Chouf el Produit"
+  }
+}

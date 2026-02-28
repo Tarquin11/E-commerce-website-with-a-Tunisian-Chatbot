@@ -1,0 +1,272 @@
+/* --- Global Style --- */
+:root {
+  /* ... (Variables from previous dark theme response should be here) ... */
+  --primary-color: #f8f9fa;
+  --secondary-color: #635bff; 
+  --accent-color: #42d9c8; 
+  --background-color: #1a1a2e; 
+  --surface-color: #27294d;
+  --text-color: #e0e0e0; 
+  --text-light: #f8f9fa;
+  --border-color: #3b3b64;
+  --card-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  --card-hover-shadow: 0 0 18px var(--secondary-color), 0 0 5px rgba(0, 0, 0, 0.8);
+  --btn-shadow: 0 4px 15px rgba(99, 91, 255, 0.4);
+}
+
+#root {
+  max-width: 1400px; /* Increased for modern desktop layout */
+  margin: 0 auto;
+  padding: 2rem 1rem; /* Added horizontal padding */
+}
+
+/* --- Section Styling --- */
+.site-section {
+  padding: 4rem 0;
+}
+
+.site-section-heading {
+  font-size: 3rem; /* Made heading larger and bolder */
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 4rem; /* More space below the heading */
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* --- Product Grid & Layout --- */
+.products-grid {
+  display: grid;
+  /* Retained your column layout, good for responsiveness */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 1.2rem !important; /* Tighter gaps for compact layout */
+  padding: 0; /* Removed unnecessary padding */
+}
+
+/* --- Product Card Component --- */
+.product-card {
+  background: var(--surface-color); /* Dark card background */
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: 1px solid var(--border-color); /* Subtle border for definition */
+}
+
+.product-card:hover {
+  transform: translateY(-8px); /* More pronounced lift on hover */
+  box-shadow: var(--card-hover-shadow); /* Lightning accent glow */
+}
+
+.card-media {
+  /* Retained aspect ratio setup */
+  position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
+  /* Added a contrasting background for the media area */
+  background-color: #3b3b64; 
+  width: 100%;
+}
+
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05); /* Slight zoom on image hover */
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.product-title {
+  font-size: 1.35rem; /* Slightly larger title */
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: var(--primary-color); /* Light color */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #a0a0a0; /* Lighter text for dark theme */
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  /* Truncate description for clean card look */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem; /* Added space before meta */
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--accent-color); /* Vibrant teal for price */
+}
+
+.stock {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+/* --- Button Styling --- */
+.btn {
+  width: 100%; /* Make button fill the card width */
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color); /* Vibrant purple */
+  color: var(--text-light);
+  box-shadow: var(--btn-shadow);
+}
+
+.btn-primary:hover {
+  background-color: #7d73ff; /* Slightly lighter purple on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 91, 255, 0.6);
+}
+
+.btn-primary:disabled {
+  background-color: #3b3b64;
+  color: #777;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Hero CTA: separate from global .btn rules to avoid decorative pseudo-elements */
+.hero-cta {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
+  color: var(--text-light);
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(99, 91, 255, 0.35);
+  border: none;
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.45);
+}
+
+/* --- Error Styling --- */
+.error {
+  color: #ff5252;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #4d1a1a; 
+  border: 1px solid #ff5252;
+  border-radius: 6px;
+}
+
+.logo {
+  height: 4em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em var(--secondary-color));
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em var(--accent-color));
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Custom radio for payment method */
+.radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
+.radio-label input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.radio-custom {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #1f2236, #0f1122);
+  border: 2px solid rgba(255,255,255,0.12);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+.radio-custom::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%) scale(0.0);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0.9));
+  transition: transform 160ms cubic-bezier(.2,.9,.3,1);
+}
+.radio-label input:checked + .radio-custom {
+  background: linear-gradient(135deg, #635bff, #4f46e5);
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(99,91,255,0.32);
+}
+.radio-label input:checked + .radio-custom::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.radio-text {
+  display: inline-block;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}

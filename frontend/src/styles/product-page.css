@@ -1,0 +1,615 @@
+/* Product detail page styles */
+.product-page {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+.product-gallery {
+  flex: 1 1 50%;
+}
+.zoom-container {
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+}
+.zoom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+  transform: scale(1);
+}
+.zoom-container:hover .zoom-image {
+  transform: scale(1.8);
+}
+.product-info {
+  flex: 1 1 40%;
+  max-width: 480px;
+}
+.size-list { 
+  display: flex; 
+  gap: 12px; 
+  margin-top: 12px; 
+  flex-wrap: wrap;
+}
+
+.size-btn { 
+  padding: 12px 18px; 
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px; 
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.size-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(99, 91, 255, 0.15);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.size-btn:hover {
+  border-color: #635bff;
+  color: #fff;
+}
+
+.size-btn.active { 
+  background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
+  color: #fff;
+  border-color: #635bff;
+  box-shadow: 0 6px 16px rgba(99, 91, 255, 0.35);
+}
+
+.quantity { 
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity label {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.quantity input { 
+  width: 100px;
+  padding: 10px 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.quantity input:focus {
+  outline: none;
+  border-color: #635bff;
+  background: rgba(99, 91, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1);
+}
+
+.customize { 
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(99, 91, 255, 0.08);
+  border: 2px solid rgba(99, 91, 255, 0.2);
+  border-radius: 12px;
+}
+
+.customize h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.15rem;
+}
+
+.customize label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.customize input { 
+  display: block;
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.customize input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.customize input:focus {
+  outline: none;
+  border-color: #635bff;
+  background: rgba(99, 91, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1);
+}
+
+.actions { 
+  margin-top: 20px;
+  display: flex; 
+  gap: 12px;
+}
+/* Product Page Layout */
+.product-page-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem 0.5rem;
+}
+
+/* Club Header */
+.club-header {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  margin-bottom: 0.15rem !important;
+  padding: 0.15rem 0.75rem !important;
+  background: transparent !important;
+}
+
+/* remove any accidental divider under the logo/title area */
+.club-header::after { content: none; display: none; }
+
+.back-button {
+  padding: 0.45rem 0.8rem;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.12s ease;
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-button:hover {
+  background: rgba(255,255,255,0.02);
+  transform: translateY(-48%);
+}
+
+.club-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.club-info .club-logo {
+  display: block !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  align-self: center !important;
+}
+
+.club-header .club-logo {
+  display: block !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  align-self: center !important;
+}
+}
+
+.club-info .club-logo img,
+.club-header .club-logo img {
+  display: block !important;
+  width: 80% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.club-info h1 {
+  color: var(--primary-color) !important;
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+}
+
+/* Club products wrapper */
+.club-products {
+  margin: 0 !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Filters Section */
+.filters {
+  margin-bottom: 0.4rem;
+  margin-top: 0.15rem;
+  padding: 0.3rem 1rem;
+  background: transparent;
+  border-radius: 8px;
+  border: none;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.filter-group select {
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: var(--background-color);
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.95rem;
+  max-width: 220px;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+/* Products Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 1.2rem !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* Product Cards */
+.card.product-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-media {
+  position: relative;
+  background: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.card.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.product-title {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.description {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.price {
+  color: var(--accent-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 1.5rem 0;
+  padding: 16px;
+  background: rgba(99, 91, 255, 0.08);
+  border: 2px solid rgba(99, 91, 255, 0.2);
+  border-radius: 12px;
+}
+
+.price-section > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-section .label {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.price-section .price {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.price-section .total-price .price.highlight {
+  color: #10b981;
+  font-size: 1.4rem;
+}
+
+.customization-note {
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 8px 0 0 0;
+  padding: 8px 0;
+  border-top: 1px solid rgba(99, 91, 255, 0.3);
+}
+
+.patches-section {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(99, 91, 255, 0.08);
+  border: 2px solid rgba(99, 91, 255, 0.2);
+  border-radius: 12px;
+}
+
+.patches-section h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.15rem;
+}
+
+.patch-description {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 0 0 16px 0;
+}
+
+.patches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.patch-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.patch-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(99, 91, 255, 0.15);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.patch-btn:hover {
+  border-color: #635bff;
+  color: #fff;
+}
+
+.patch-btn.active {
+  background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
+  color: #fff;
+  border-color: #635bff;
+  box-shadow: 0 6px 16px rgba(99, 91, 255, 0.35);
+}
+
+.patch-icon {
+  font-size: 1.8rem;
+  display: block;
+}
+
+.patch-name {
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.stock {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.card-actions {
+  margin-top: 1rem;
+}
+
+.btn.btn-primary,
+.btn.primary {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #635bff 0%, #4f46e5 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn.btn-primary::before,
+.btn.primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.btn.btn-primary:hover,
+.btn.primary:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(99, 91, 255, 0.45);
+}
+
+.btn.btn-primary:active,
+.btn.primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 91, 255, 0.35);
+}
+
+.btn.btn-primary:disabled,
+.btn.primary:disabled {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0.6;
+}
+
+.btn {
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading & Error States */
+.no-products {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-color);
+  opacity: 0.8;
+  padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-page-container {
+    padding: 1rem;
+  }
+
+  .club-header {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.15rem 0.75rem !important;
+  }
+
+  .club-info {
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left;
+  }
+
+  .club-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}

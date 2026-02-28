@@ -1,0 +1,154 @@
+/* Clubs Grid Layout */
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 3rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.site-section-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Club Card */
+.club-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.club-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Club Logo */
+.club-logo {
+  width: 100%;
+  height: 300px;
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.club-logo img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.club-card:hover .club-logo img {
+  transform: scale(1.05);
+}
+
+/* Club Info */
+.club-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.club-info h3 {
+  font-size: 1.9rem;
+  color: var(--primary-color);
+  margin: 0;
+  font-weight: 700;
+}
+
+.club-description {
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.85;
+  flex-grow: 1;
+}
+
+.product-count {
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Football Clubs Title */
+h1.football-clubs-title {
+  font-size: 4rem;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+/* Wrapper used on the ProductList to ensure header sits above the grid */
+.clubs-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .clubs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .clubs-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .section-header {
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .site-section-heading {
+    font-size: 2rem;
+  }
+
+  .club-logo {
+    height: 160px;
+    padding: 1.5rem;
+  }
+
+  .club-info {
+    padding: 1.25rem;
+  }
+
+  .club-info h3 {
+    font-size: 1.25rem;
+  }
+}

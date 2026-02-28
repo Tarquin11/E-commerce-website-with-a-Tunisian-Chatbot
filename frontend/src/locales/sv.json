@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "cart": "Cart",
+    "logout": "Logout"
+  },
+  "home": {
+    "hero_title": "THE GOAT-SHOP COLLECTION",
+    "hero_sub": "Shop the Official Gear of the Legends",
+    "shop_now": "Shop Now",
+    "new_gen": "Shop by New Gen Players",
+    "old_gen": "Shop by Old Gen Players",
+    "goalkeepers": "Shop by Goalkeepers",
+    "featured_heading": "Must-Haves & Trending Now",
+    "explore_all": "Explore All Collections",
+    "add_to_cart": "Add to Cart",
+    "sold_out": "Sold Out"
+  },
+  "filters": {
+    "club": "Club",
+    "season": "Season",
+    "all": "All"
+  },
+  "searchPlaceholder": "Search products, players, collections..."
+}
