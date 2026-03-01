@@ -97,7 +97,6 @@ export const getProduct = async (id: number): Promise<Product> => {
 // Cart APIs
 export const getCart = async (): Promise<CartItemWithProduct[]> => {
   const response = await api.get('/cart');
-  console.log('[API_GET_CART] Response data:', response.data);
   return (response.data as CartItemWithProduct[]) || [];
 };
 

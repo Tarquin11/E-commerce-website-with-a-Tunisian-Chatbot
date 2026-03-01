@@ -1,25 +1,25 @@
-from flask import Flask, app
+from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
+from flask_caching import Cache
 import os
-from dotenv import load_dotenv  
+from dotenv import load_dotenv
+
 load_dotenv()
 
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
 mail = Mail()
-from flask_caching import Cache
-
-
 cache = Cache()
+
+
 def create_app():
     app = Flask(__name__)
-    CORS(app, resources={r"/api/*": {"origins": "http://goatshop.se:5173"}})
-    
+
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key')
 
     env_db = os.environ.get('DATABASE_URL')
@@ -29,6 +29,7 @@ def create_app():
         basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         db_path = os.path.join(basedir, 'ecommerce.db')
         app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'jwt-secret-key')
     app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
@@ -40,16 +41,17 @@ def create_app():
     app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
     app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS', 'true').lower() in ('true', '1', 'yes')
     app.config['MAIL_USE_SSL'] = os.environ.get('MAIL_USE_SSL', 'false').lower() in ('true', '1', 'yes')
-    print(f"Configuring Mail: {app.config.get('MAIL_USERNAME')} using port {app.config.get('MAIL_PORT')}")
-    if not app.config['MAIL_PASSWORD']:
-         print(" MAIL_PASSWORD is empty!")
     origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:5000",
         "http://127.0.0.1:5000",
         "http://goatshop.com:3000",
-        "http://goatshop.com"
+        "http://goatshop.com",
+        "http://goatshop.se:5173",
+        "http://goatshop.se"
     ]
     CORS(app, resources={r"/api/*": {"origins": origins}})
     db.init_app(app)
@@ -82,25 +84,5 @@ def create_app():
                     print("Seeding failed:", e)
         except Exception:
             pass
-
-        pre = os.environ.get('PREGENERATE_LOCALES', '1').lower()
-        if pre in ('1', 'true', 'yes'):
-            def _pre_generate_locales():
-                try:
-                    from app.main import generate_locale, SUPPORTED_LANGS
-                    with app.app_context():
-                        for lang in SUPPORTED_LANGS:
-                            try:
-                                generate_locale(lang)
-                            except Exception:
-                                pass
-                except Exception:
-                    pass
-            
-            try:
-                import threading
-                threading.Thread(target=_pre_generate_locales, daemon=True).start()
-            except Exception:
-                pass
 
     return app

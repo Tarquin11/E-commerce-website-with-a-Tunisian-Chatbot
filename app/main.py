@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, current_app, send_file, abort
+from flask import Blueprint, jsonify, request, current_app, abort
 from . import db, cache
 from .models import Product, Cart, Order, OrderItem, Club, User
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -606,9 +606,9 @@ def get_products():
     player = request.args.get('player')
     query = Product.query.filter_by(is_deleted=False)
     if club and club != "All Clubs":
-        query = query.filter(Product.club == club)
+        query = query.join(Club, Product.club_id == Club.id).filter(Club.name.ilike(f"%{club.strip()}%"))
     if season and season != "All Seasons":
-        query = query.filter(Product.season == season)
+        query = query.filter(Product.season.ilike(f"%{season.strip()}%"))
     if player:
         # allow backend to return both explicitly tagged legendary items and any product mentioning the player
         player_normalized = player.lower()
@@ -652,6 +652,11 @@ def soft_delete_product(product_id):
             admin_ids = set(int(x) for x in admin_config)
         except Exception:
             admin_ids = set()
+
+    try:
+        current_user_id = int(current_user_id)
+    except Exception:
+        abort(403)
 
     if current_user_id not in admin_ids:
         abort(403)
@@ -783,9 +788,7 @@ def generate_locale(lang_code):
 @jwt_required()
 def get_cart():
     current_user_id = get_jwt_identity()
-    print(f'[GET_CART] User {current_user_id} fetching cart', flush=True)
     cart_items = Cart.query.filter_by(user_id=current_user_id).all()
-    print(f'[GET_CART] Found {len(cart_items)} items', flush=True)
     result = [
         {
             'productId': item.product_id,
@@ -801,7 +804,6 @@ def get_cart():
         }
         for item in cart_items
     ]
-    print(f'[GET_CART] Returning: {result}', flush=True)
     return jsonify(result)
 
 
@@ -811,7 +813,6 @@ def add_to_cart():
     try:
         current_user_id = get_jwt_identity()
         data = request.get_json() or {}
-        print(f'[CART_ADD] User {current_user_id}, payload: {data}', flush=True)
         product_id = data.get('productId')
         if product_id is None:
             return jsonify({'error': 'productId is required'}), 400
@@ -835,35 +836,22 @@ def add_to_cart():
             db.session.add(cart_item)
 
         db.session.commit()
-        print(f'[CART_ADD] Success: added product {product_id} for user {current_user_id}', flush=True)
         return jsonify({'message': 'Product added to cart'})
     except Exception as e:
-        print(f'[CART_ADD_ERROR] {str(e)}', flush=True)
-        import traceback
-        traceback.print_exc()
+        current_app.logger.exception('cart_add_error')
         return jsonify({'error': f'Server error: {str(e)}'}), 500
 
-
-@main_bp.route('/cart/add-debug', methods=['POST'])
-def add_to_cart_debug():
-    """Temporary debug endpoint to inspect incoming add-to-cart requests and headers.
-    Does not require authentication. Remove this once debugging is complete.
-    """
-    data = request.get_json() or {}
-    auth = None
-    try:
-        auth = request.headers.get('Authorization')
-    except Exception:
-        auth = None
-    print('[DEBUG] /cart/add-debug received payload:', data)
-    print('[DEBUG] Authorization header:', auth)
-    return jsonify({'received': data, 'authorization': bool(auth), 'auth_header': auth}), 200
 @main_bp.route('/cart/update/<int:product_id>', methods=['PUT'])
 @jwt_required()
 def update_cart_quantity(product_id):
     current_user_id = get_jwt_identity()
     data = request.get_json() or {}
-    quantity = int(data.get('quantity', 1))
+    try:
+        quantity = int(data.get('quantity', 1))
+    except (TypeError, ValueError):
+        return jsonify({'error': 'quantity must be an integer'}), 400
+    if quantity <= 0:
+        return jsonify({'error': 'quantity must be at least 1'}), 400
 
     cart_item = Cart.query.filter_by(user_id=current_user_id, product_id=product_id).first_or_404()
     cart_item.quantity = quantity

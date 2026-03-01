@@ -2,13 +2,7 @@ import os
 from flask_mail import Message
 from flask import render_template_string
 from . import mail
-from datetime import datetime
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except Exception:
-    def load_dotenv():
-        return None
+
 def send_order_confirmation_email(user_email, user_name, order_id, order_items, total_price, subtotal, jersey_tax, shipping_tax, shipping_cost, coupon_code=None, discount=0.0, payment_method=None):
     """
     Send an order confirmation email to the customer

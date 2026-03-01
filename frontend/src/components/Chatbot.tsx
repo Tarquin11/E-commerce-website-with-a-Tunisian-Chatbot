@@ -20,7 +20,6 @@ const Chatbot = () => {
   const [showChatbot, setShowChatbot] = useState(false);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const [isThinking, setIsThinking] = useState(false);
-  const lastRequestAtRef = useRef(0);
   const [usingLocal, setUsingLocal] = useState(false);
   const tools = [{
     function_declarations: [{
@@ -72,9 +71,8 @@ Be polite, concise, and professional in your responses. Always aim to assist the
       updateHistoryMessage('Chat API not configured.', true);
       return;
     }
-    const now = Date.now();
     if (isThinking) return;
-    lastRequestAtRef.current = now;
+    setIsThinking(true);
     const contents = history.map(msg => ({
       role: msg.role === 'user' ? 'user' : 'model',
       parts: [{ text: msg.text }]
@@ -115,7 +113,7 @@ Be polite, concise, and professional in your responses. Always aim to assist the
             const heightMatch = text.match(/(\d{3})\s*([a-zöäå]+)?/i);
             const weightMatch = text.match(/(\d{2})\s*(kg|kilo|k)?/i);
             let clubCandidate = '';
-            const commonClubs = ['real madrid', 'barcelona', 'manchester City','Manchester United', 'liverpool', 'chelsea', 'juventus', 'inter', 'bayern', 'psg', 'Esperance'];
+            const commonClubs = ['real madrid', 'barcelona', 'manchester city', 'manchester united', 'liverpool', 'chelsea', 'juventus', 'inter', 'bayern', 'psg', 'esperance'];
             for (const club of commonClubs) {
               if (lowerText.includes(club)) {
                 clubCandidate = club;
@@ -193,7 +191,7 @@ Be polite, concise, and professional in your responses. Always aim to assist the
         console.debug('[chat] detected function call', funcName, funcArgs);
         if (['search_jersey', 'searchJersey', 'get_jersey_recommendation', 'getJerseyRecommendation'].includes(funcName)) {
           try {
-            const fnResp = await fetch('/chat/search_jersey', {
+            const fnResp = await fetch('/api/chat/search_jersey', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(funcArgs || {})
